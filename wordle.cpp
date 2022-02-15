@@ -39,11 +39,11 @@ int main() {
 
             cout << "Enter this word in Wordle and insert the colors of the letter in the terminal" << endl;
             cout << endl;
-            cout << "RESULTS:" << endl;
+            cout << "COLORS:" << endl;
             cout << "Green  -> 1" << endl;
             cout << "Yellow -> 0" << endl;
             cout << "Gray   -> -1" << endl;
-            cout << "RESET word results -> 256" << endl;
+            cout << "RESET word colors -> 256" << endl;
             cout << endl;
 
             do
@@ -61,7 +61,7 @@ int main() {
                 }
 
                 for (int i = 0; i < 5; i++) {
-                    cout << i + 1 << "° letter result > "; cin >> input;
+                    cout << i + 1 << "° letter color > "; cin >> input;
                     if (input == 256) {
                         typeWord.clear();
                         i = -1;
