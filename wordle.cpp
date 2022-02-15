@@ -43,6 +43,7 @@ int main() {
             cout << "Green  -> 1" << endl;
             cout << "Yellow -> 0" << endl;
             cout << "Gray   -> -1" << endl;
+            cout << "RESET word results -> 256" << endl;
             cout << endl;
 
             do
@@ -61,13 +62,20 @@ int main() {
 
                 for (int i = 0; i < 5; i++) {
                     cout << i + 1 << "° letter result > "; cin >> input;
-                    typeWord.push_back(input);
+                    if (input == 256) {
+                        typeWord.clear();
+                        i = -1;
+
+                        cout << endl;
+                    } else
+                        typeWord.push_back(input);
                 }
                 FD.equalWords(enteredWord, typeWord);
                 
                 cout << endl;
                 cout << "POSSIBLE WORDS" << endl;
                 FD.evo();
+                FD.printList();
 
                 count++;
             } while (count < 6);
