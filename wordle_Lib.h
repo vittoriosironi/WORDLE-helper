@@ -5,6 +5,10 @@
 
 using namespace std;
 
+// COLORS
+#define RESET   "\033[0m"
+#define GREEN   "\033[32m"
+
 class Dataset
 {
 public:
@@ -60,7 +64,7 @@ public:
 
     void printList() {
         for (int i = 0; i < wordsList.size(); i++)
-            cout << wordsList[i] << endl;
+            cout << (wordsList.size() == 1 ? GREEN : RESET) << wordsList[i] << RESET << endl;
     }
     void equalWords(string enteredWord, vector<int> types) {
         for (int i = 0; i < enteredWord.size(); i++) {
@@ -80,10 +84,10 @@ public:
 
         return false;
     }
-    bool isContainYellow(biLetters letter, string word) {
+    bool isContainYellow(biLetters letter, int pos, string word) {
         if (letter.type == 0) {
             for (int i = 0; i < word.size(); i++) {
-                if (letter.letter == word[i])
+                if (letter.letter == word[i] && i != pos)
                     return true;
             }
             return false;
@@ -109,8 +113,8 @@ public:
 
         for (int i = 0; i < wordsList.size(); i++) {
             for (int k = 0; k < words.size(); k++) {
-                if (isContainGray(words[k], wordsList[i]) ||
-                    !isContainYellow(words[k], wordsList[i]) ||
+                if ( isContainGray(words[k], wordsList[i]) ||
+                    !isContainYellow(words[k], k, wordsList[i]) ||
                     !isContainGreen(words[k], k, wordsList[i])) {
                         controllo = false;
                         break;
@@ -121,9 +125,6 @@ public:
             controllo = true;
         }
         wordsList = wordsListNew;
-
-        printList();
-        
     }
 
 
